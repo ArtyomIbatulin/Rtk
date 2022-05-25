@@ -9,8 +9,8 @@ const initialState = {
 };
 
 export const fetchUsers = createAsyncThunk("user/fetchUsers", () => {
-  return get("https://jsonplaceholder.typicode.com/users").then((response) =>
-    response.data.map((user) => user.id)
+  return get("https://jsonplaceholder.typicode.com/users").then(
+    (response) => response.data
   );
 });
 
