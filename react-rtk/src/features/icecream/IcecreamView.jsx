@@ -11,7 +11,7 @@ export const IcecreamView = () => {
   return (
     <div>
     <h2>Number of ice creams - {numOfIcecreams}</h2>
-    <button onClick={() => dispatch(orderedIcecream())}>Order ice creams</button>
+    <button onClick={() => dispatch(orderedIcecream())}>Order ice cream</button>
     <input
     type = "number"
     value = {value}
