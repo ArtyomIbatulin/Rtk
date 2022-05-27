@@ -1,8 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice , PayloadAction} from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { get } from "axios";
 
-const initialState = {
+type User = {
+  id : number,
+  name : string
+}
+
+type InitialState ={
+  loading: boolean,
+  users : User[],
+  error : string
+}
+
+const initialState : InitialState = {
   loading: false,
   users: [],
   error: "",
@@ -22,7 +33,7 @@ const userSlice = createSlice({
     builder.addCase(fetchUsers.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(fetchUsers.fulfilled, (state, action) => {
+    builder.addCase(fetchUsers.fulfilled, (state, action : PayloadAction<User[]>) => {
       state.loading = false;
       state.users = action.payload;
       state.error = "";
@@ -30,7 +41,7 @@ const userSlice = createSlice({
     builder.addCase(fetchUsers.rejected, (state, action) => {
       state.loading = false;
       state.users = [];
-      state.error = action.error.message;
+      state.error = action.error.message || 'Something went wrong'
     });
   },
 });
