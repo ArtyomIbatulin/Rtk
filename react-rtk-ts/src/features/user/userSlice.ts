@@ -1,6 +1,6 @@
 import { createSlice , PayloadAction} from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { get } from "axios";
+import axios from "axios";
 
 type User = {
   id : number,
@@ -20,7 +20,7 @@ const initialState : InitialState = {
 };
 
 export const fetchUsers = createAsyncThunk("user/fetchUsers", () => {
-  return get("https://jsonplaceholder.typicode.com/users").then(
+  return axios.get("https://jsonplaceholder.typicode.com/users").then(
     (response) => response.data
   );
 });
